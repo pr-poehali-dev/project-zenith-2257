@@ -1,11 +1,10 @@
 import { useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 
-const images = [
-  "/minimal-architecture-portfolio-with-clean-lines.jpg",
-  "/fashion-photography-editorial-black-and-white.jpg",
-  "/modern-ui-design-portfolio-mockup.jpg",
-]
+const sampleImage =
+  "https://cdn.poehali.dev/projects/64288b54-a64f-482e-8186-162b4527ad04/files/2bb49fea-6e02-4213-a1ad-3ae8bfaf1ec3.jpg"
+
+const images = [sampleImage, sampleImage, sampleImage]
 
 export function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null)

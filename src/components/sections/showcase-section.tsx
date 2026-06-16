@@ -1,11 +1,10 @@
 import { useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 
-const showcaseImages = [
-  "/modern-architecture-building-exterior-minimal.jpg",
-  "/fashion-model-editorial-portrait-dramatic-lighting.jpg",
-  "/interior-design-minimalist-living-room-natural-lig.jpg",
-]
+const sampleImage =
+  "https://cdn.poehali.dev/projects/64288b54-a64f-482e-8186-162b4527ad04/files/2bb49fea-6e02-4213-a1ad-3ae8bfaf1ec3.jpg"
+
+const showcaseImages = [sampleImage, sampleImage, sampleImage]
 
 export function ShowcaseSection() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -29,14 +28,14 @@ export function ShowcaseSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          Галерея
+          Галерея — формат 273×212
         </motion.p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <div className="flex flex-wrap justify-center gap-6 md:gap-8">
           {showcaseImages.map((src, i) => (
             <motion.div
               key={i}
-              className="relative h-[400px] md:h-[500px] rounded-xl overflow-hidden group"
+              className="relative w-[273px] h-[212px] rounded-xl overflow-hidden group flex-shrink-0"
               style={{ y: yValues[i] }}
               initial={{ clipPath: "inset(100% 0 0 0)" }}
               whileInView={{ clipPath: "inset(0 0 0 0)" }}
@@ -50,11 +49,16 @@ export function ShowcaseSection() {
             >
               <motion.img
                 src={src}
-                alt={`Изображение ${i + 1}`}
+                alt={`Фотография ${i + 1}`}
+                width={273}
+                height={212}
                 className="w-full h-full object-cover"
                 whileHover={{ scale: 1.1 }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               />
+              <span className="absolute bottom-2 right-2 bg-black/60 text-white text-xs px-2 py-1 rounded">
+                273×212
+              </span>
             </motion.div>
           ))}
         </div>

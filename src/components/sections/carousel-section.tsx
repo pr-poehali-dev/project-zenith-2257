@@ -1,12 +1,15 @@
 import { motion } from "framer-motion"
 
+const sampleImage =
+  "https://cdn.poehali.dev/projects/64288b54-a64f-482e-8186-162b4527ad04/files/2bb49fea-6e02-4213-a1ad-3ae8bfaf1ec3.jpg"
+
 const portfolioItems = [
-  "/portfolio-website-design-preview-modern.jpg",
-  "/photography-portfolio-website-clean.jpg",
-  "/architecture-firm-website-minimal.jpg",
-  "/design-agency-portfolio-dark-theme.jpg",
-  "/artist-portfolio-website-creative.jpg",
-  "/writer-portfolio-website-elegant.jpg",
+  sampleImage,
+  sampleImage,
+  sampleImage,
+  sampleImage,
+  sampleImage,
+  sampleImage,
 ]
 
 export function CarouselSection() {
@@ -22,7 +25,7 @@ export function CarouselSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          Создано авторами для авторов.
+          Снято с любовью к деталям.
         </motion.h2>
       </div>
 
