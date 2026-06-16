@@ -1,19 +1,14 @@
 import { motion } from "framer-motion"
+import { getStoredPhotos } from "@/pages/Admin"
 
 const sampleImage =
   "https://cdn.poehali.dev/projects/64288b54-a64f-482e-8186-162b4527ad04/files/2bb49fea-6e02-4213-a1ad-3ae8bfaf1ec3.jpg"
 
-const portfolioItems = [
-  sampleImage,
-  sampleImage,
-  sampleImage,
-  sampleImage,
-  sampleImage,
-  sampleImage,
-]
+const fallback = [sampleImage, sampleImage, sampleImage, sampleImage, sampleImage, sampleImage]
 
 export function CarouselSection() {
-  // Duplicate for seamless loop
+  const stored = getStoredPhotos()
+  const portfolioItems = stored.length >= 3 ? stored : fallback
   const items = [...portfolioItems, ...portfolioItems]
 
   return (

@@ -1,23 +1,37 @@
 import { useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
+import { getStoredPhotos } from "@/pages/Admin"
 
 const sampleImage =
   "https://cdn.poehali.dev/projects/64288b54-a64f-482e-8186-162b4527ad04/files/2bb49fea-6e02-4213-a1ad-3ae8bfaf1ec3.jpg"
 
-const showcaseImages = [sampleImage, sampleImage, sampleImage]
+const offsets: [number, number][] = [
+  [100, -100], [150, -150], [80, -80],
+  [120, -120], [90, -90], [140, -140],
+  [70, -70], [110, -110], [130, -130],
+]
 
 export function ShowcaseSection() {
   const containerRef = useRef<HTMLDivElement>(null)
+  const stored = getStoredPhotos()
+  const showcaseImages = stored.length >= 3 ? stored.slice(0, 9) : [sampleImage, sampleImage, sampleImage]
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
   })
 
-  const y1 = useTransform(scrollYProgress, [0, 1], [100, -100])
-  const y2 = useTransform(scrollYProgress, [0, 1], [150, -150])
-  const y3 = useTransform(scrollYProgress, [0, 1], [80, -80])
+  const y0 = useTransform(scrollYProgress, [0, 1], offsets[0])
+  const y1 = useTransform(scrollYProgress, [0, 1], offsets[1])
+  const y2 = useTransform(scrollYProgress, [0, 1], offsets[2])
+  const y3 = useTransform(scrollYProgress, [0, 1], offsets[3])
+  const y4 = useTransform(scrollYProgress, [0, 1], offsets[4])
+  const y5 = useTransform(scrollYProgress, [0, 1], offsets[5])
+  const y6 = useTransform(scrollYProgress, [0, 1], offsets[6])
+  const y7 = useTransform(scrollYProgress, [0, 1], offsets[7])
+  const y8 = useTransform(scrollYProgress, [0, 1], offsets[8])
 
-  const yValues = [y1, y2, y3]
+  const yValues = [y0, y1, y2, y3, y4, y5, y6, y7, y8]
 
   return (
     <section ref={containerRef} className="bg-background px-6 py-32 overflow-hidden">
@@ -28,7 +42,7 @@ export function ShowcaseSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          Галерея — формат 273×212
+          Галерея
         </motion.p>
 
         <div className="flex flex-wrap justify-center gap-6 md:gap-8">
@@ -42,7 +56,7 @@ export function ShowcaseSection() {
               viewport={{ once: true }}
               transition={{
                 duration: 1,
-                delay: i * 0.15,
+                delay: i * 0.1,
                 ease: [0.16, 1, 0.3, 1],
               }}
               data-clickable
@@ -53,12 +67,9 @@ export function ShowcaseSection() {
                 width={273}
                 height={212}
                 className="w-full h-full object-cover"
-                whileHover={{ scale: 1.1 }}
+                whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               />
-              <span className="absolute bottom-2 right-2 bg-black/60 text-white text-xs px-2 py-1 rounded">
-                273×212
-              </span>
             </motion.div>
           ))}
         </div>
